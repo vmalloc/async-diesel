@@ -1,7 +1,4 @@
-#[macro_use]
-extern crate diesel;
-
-use async_diesel::*;
+use async_diesel2::*;
 use diesel::{
     prelude::*,
     r2d2::{ConnectionManager, Pool},
