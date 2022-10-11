@@ -172,7 +172,7 @@ where
     where
         Self: ExecuteDsl<Conn>,
     {
-        asc.run(|conn| self.execute(&*conn)).await
+        asc.run(|conn| self.execute(conn)).await
     }
 
     async fn load_async<U>(self, asc: &Pool<ConnectionManager<Conn>>) -> AsyncResult<Vec<U>>
@@ -180,7 +180,7 @@ where
         U: 'static + Send,
         Self: LoadQuery<Conn, U>,
     {
-        asc.run(|conn| self.load(&*conn)).await
+        asc.run(|conn| self.load(conn)).await
     }
 
     async fn get_result_async<U>(self, asc: &Pool<ConnectionManager<Conn>>) -> AsyncResult<U>
@@ -188,7 +188,7 @@ where
         U: 'static + Send,
         Self: LoadQuery<Conn, U>,
     {
-        asc.run(|conn| self.get_result(&*conn)).await
+        asc.run(|conn| self.get_result(conn)).await
     }
 
     async fn get_results_async<U>(self, asc: &Pool<ConnectionManager<Conn>>) -> AsyncResult<Vec<U>>
@@ -196,7 +196,7 @@ where
         U: 'static + Send,
         Self: LoadQuery<Conn, U>,
     {
-        asc.run(|conn| self.get_results(&*conn)).await
+        asc.run(|conn| self.get_results(conn)).await
     }
 
     async fn first_async<U>(self, asc: &Pool<ConnectionManager<Conn>>) -> AsyncResult<U>
@@ -205,6 +205,6 @@ where
         Self: LimitDsl,
         Limit<Self>: LoadQuery<Conn, U>,
     {
-        asc.run(|conn| self.first(&*conn)).await
+        asc.run(|conn| self.first(conn)).await
     }
 }
